@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Exception: the character Xiaofei is not covered by this license. The files
-feifei-ism/assets/nav/xiaofei.js and assets/xiaofei.webp are the author's own
-likeness, all rights reserved. They may be redistributed only whole and
-unchanged as part of this package, and displayed unchanged in the navigation
-of pages built with it. They may not be taken apart, modified, used on their
-own, or sold.

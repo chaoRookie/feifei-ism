@@ -63,6 +63,6 @@ When you finish, press the seal into the lower right corner.
 
 ## License
 
-[MIT](LICENSE). Xiaofei is excluded: `feifei-ism/assets/nav/xiaofei.js` and `assets/xiaofei.webp` are the author's own likeness, all rights reserved. It is sealed in one file, to be used whole and shown unchanged in the navigation. It may not be taken apart, modified, used on its own or sold. If you do not want it, delete the line in `templates/nav.html` that references it, and the navigation still works.
+[MIT](LICENSE). Xiaofei is excluded (see [NOTICE](NOTICE)): `feifei-ism/assets/nav/xiaofei.js` and `assets/xiaofei.webp` are the author's own likeness, all rights reserved. It is sealed in one file, to be used whole and shown unchanged in the navigation. It may not be taken apart, modified, used on its own or sold. If you do not want it, delete the line in `templates/nav.html` that references it, and the navigation still works.
 
 Fonts on the pages come from Google Fonts, each under its own license.

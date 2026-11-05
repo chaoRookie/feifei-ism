@@ -63,6 +63,6 @@ cp -R feifei-ism/feifei-ism ~/.claude/skills/
 
 ## 许可证
 
-[MIT](LICENSE)。小肥不在其内：`feifei-ism/assets/nav/xiaofei.js` 和 `assets/xiaofei.webp` 是作者本人的形象，保留所有权利。它封在一个文件里，要用就整只用，随导航原样展示；不可以拆开、修改、单独取用或拿去卖。不想要它，删掉 `templates/nav.html` 开头引用它的那一行，导航照常。
+[MIT](LICENSE)。小肥不在其内（见 [NOTICE](NOTICE)）：`feifei-ism/assets/nav/xiaofei.js` 和 `assets/xiaofei.webp` 是作者本人的形象，保留所有权利。它封在一个文件里，要用就整只用，随导航原样展示；不可以拆开、修改、单独取用或拿去卖。不想要它，删掉 `templates/nav.html` 开头引用它的那一行，导航照常。
 
 页面用到的字体来自 Google Fonts，各有各的许可证。
