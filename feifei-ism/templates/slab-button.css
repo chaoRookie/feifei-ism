@@ -1,0 +1,14 @@
+.stage button:not(.term),.quiz button,.slabs button{position:relative;isolation:isolate;min-height:44px;padding:.42rem 0;font-size:.92rem;line-height:1.35;color:var(--ink);text-align:center;background:none;border-style:solid;border-width:0 20px;border-radius:0;border-image:url(__ASSET:btn/slab0_pale.webp__) 0 56 fill / 0 20px / 0 stretch;cursor:pointer;transition:color .25s,opacity .2s,transform .12s}
+.stage button:not(.term):nth-of-type(3n+2),.quiz button:nth-of-type(3n+2),.slabs button:nth-of-type(3n+2){border-image-source:url(__ASSET:btn/slab1_pale.webp__)}
+.stage button:not(.term):nth-of-type(3n),.quiz button:nth-of-type(3n),.slabs button:nth-of-type(3n){border-image-source:url(__ASSET:btn/slab2_pale.webp__)}
+.stage button:not(.term)::before,.quiz button::before,.slabs button::before{display:none}
+.stage button:not(.term)::after,.quiz button::after,.slabs button::after{content:"";display:block;position:absolute;inset:0 -20px;z-index:-1;opacity:1;transform:none;background:none;border-style:solid;border-width:0 20px;border-image:url(__ASSET:btn/slab0_ink.webp__) 0 56 fill / 0 20px / 0 stretch;clip-path:inset(0 100% 0 0);transition:clip-path .38s cubic-bezier(.3,.7,.2,1)}
+.stage button:not(.term):nth-of-type(3n+2)::after,.quiz button:nth-of-type(3n+2)::after,.slabs button:nth-of-type(3n+2)::after{border-image-source:url(__ASSET:btn/slab1_ink.webp__)}
+.stage button:not(.term):nth-of-type(3n)::after,.quiz button:nth-of-type(3n)::after,.slabs button:nth-of-type(3n)::after{border-image-source:url(__ASSET:btn/slab2_ink.webp__)}
+.stage button:not(.term):hover:not(:disabled),.quiz button:hover:not(:disabled),.slabs button:hover:not(:disabled){color:var(--ink);transform:translateY(-1px)}
+.stage button:not(.term):active:not(:disabled),.quiz button:active:not(:disabled),.slabs button:active:not(:disabled){transform:translateY(1px) scale(.99)}
+.stage button.p,.stage button[aria-pressed=true],.quiz button[aria-pressed=true],.slabs button.p,.slabs button[aria-pressed=true],.stage button.p:hover:not(:disabled),.stage button[aria-pressed=true]:hover:not(:disabled),.quiz button[aria-pressed=true]:hover:not(:disabled),.slabs button.p:hover:not(:disabled),.slabs button[aria-pressed=true]:hover:not(:disabled){color:var(--paper)}
+.stage button.p::after,.stage button[aria-pressed=true]::after,.quiz button[aria-pressed=true]::after,.slabs button.p::after,.slabs button[aria-pressed=true]::after{clip-path:inset(0 0 0 0)}
+.stage button:disabled,.stage button.p:disabled,.quiz button:disabled,.slabs button:disabled,.slabs button.p:disabled{color:var(--ink-3);opacity:.5;cursor:default;transform:none}
+.stage button.p:disabled::after,.slabs button.p:disabled::after{clip-path:inset(0 100% 0 0)}
+@media (prefers-reduced-motion:reduce){.stage button::after,.quiz button::after,.slabs button::after{transition:none}}

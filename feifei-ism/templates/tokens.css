@@ -1,0 +1,2 @@
+:root{color-scheme:light;--paper:#F9F4E8;--ink:#211C1C;--ink-2:#5C5650;--ink-3:#6F6961;--line:#DDD6C4;--c:#4B1F96;--f-t:"ZCOOL XiaoWei","Songti SC",serif;--f-b:"Noto Serif SC","Songti SC",serif;--f-e:"Cormorant Garamond",Georgia,serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace}
+body{background-color:var(--paper);background-image:url(__ASSET:paper/xuan_fiber.webp__),url(__ASSET:paper/xuan_cloud.webp__);background-size:768px,1181px;background-blend-mode:multiply,multiply}
