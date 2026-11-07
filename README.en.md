@@ -49,8 +49,8 @@ Make me a page in Feifei-ism.
 | In the package | What it does |
 |---|---|
 | `references/DESIGN.md` | The design constitution, in Chinese: invented characters, colour, type, controls, motion, prompts for image models, and a checklist for delivery |
-| `templates/` | Page template, paint buttons, long-page navigation |
-| `assets/` | Palette-knife strokes, sample characters, xuan paper, dabs of paint |
+| `templates/` | Page template, six sets of paint buttons and the motion kit, long-page navigation |
+| `assets/` | Palette-knife strokes, sample characters, xuan paper, slabs of paint, motion sprites |
 | `scripts/` | Page assembly, cut-out, recolouring, paper making |
 
 To make it yours, change three things. Draw one main colour from the twelve lots. Sign with your own name. Replace the companions in the navigation with your own.

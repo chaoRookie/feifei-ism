@@ -1,0 +1,8 @@
+:root{--ff-st0:url(__ASSET:strokes/st0.webp__);--ff-st1:url(__ASSET:strokes/st1.webp__);--ff-st2:url(__ASSET:strokes/st2.webp__);--ff-st3:url(__ASSET:strokes/st3.webp__);--ff-st4:url(__ASSET:strokes/st4.webp__);--ff-st5:url(__ASSET:strokes/st5.webp__)}
+:root{--t-press:100ms;--t-hold:70ms;--t-press-min:170ms;--t-return:500ms;--t-hover:300ms;--t-exit:280ms;--t-release:380ms;--t-move:520ms;--t-smear-s:600ms;--t-smear:1500ms;--e-out:cubic-bezier(.3,.7,.2,1);--e-exit:cubic-bezier(.4,.14,1,1);--e-drop:cubic-bezier(.5,0,.9,.4);--e-move:cubic-bezier(.65,0,.35,1);--e-pull:cubic-bezier(.12,.8,.25,1)}
+@supports (transition-timing-function:linear(0,1)){:root{--e-pull:linear(0, 0.1333, 0.24, 0.3273, 0.4, 0.4615, 0.5143, 0.56, 0.6, 0.6353, 0.6667, 0.6947, 0.72, 0.7429, 0.7636, 0.7826, 0.8, 0.816, 0.8308, 0.8444, 0.8571, 0.869, 0.88, 0.8903, 0.9, 0.9091, 0.9176, 0.9257, 0.9333, 0.9405, 0.9474, 0.9538, 0.96, 0.9659, 0.9714, 0.9767, 0.9818, 0.9867, 0.9913, 0.9957, 1);--e-move:linear(0, 0.0007, 0.0051, 0.0161, 0.0355, 0.0645, 0.1035, 0.1522, 0.2099, 0.2752, 0.3466, 0.4222, 0.5, 0.5778, 0.6534, 0.7248, 0.7901, 0.8478, 0.8965, 0.9355, 0.9645, 0.9839, 0.9949, 0.9993, 1)}}
+.ffchop{position:absolute;pointer-events:none;z-index:3;opacity:0;background:url(__ASSET:btn/slab2_pale.webp__) center/240% 240%,#3A302C;background-blend-mode:multiply;transform-origin:50% 50%}
+.ffcell{position:relative;display:inline-block;overflow:hidden;height:1.2em;min-width:.6em;vertical-align:bottom}
+.ffcell i{display:block;font-style:normal}
+.ffcell i+i{position:absolute;left:0;top:0}
+.ffdeep{will-change:transform}
