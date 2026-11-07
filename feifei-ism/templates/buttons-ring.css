@@ -1,0 +1,16 @@
+button.k5::after{-webkit-mask:var(--ring) 100% 0/4900% 100% no-repeat;mask:var(--ring) 100% 0/4900% 100% no-repeat;inset:-.2rem -.45rem}
+button.k5{--ring:url(__ASSET:motion/ring_strip.webp__);--hatch:url(__ASSET:motion/hatch.webp__)}
+button.k5.ffdraw::after{animation:ffring 1.25s steps(49,jump-none) both}
+@keyframes ffring{from{-webkit-mask-position:0 0;mask-position:0 0}to{-webkit-mask-position:100% 0;mask-position:100% 0}}
+button.k5 .fftx{display:inline-block}
+button.k5.ffdraw .fftx{animation:fftx .9s cubic-bezier(.3,.7,.2,1) .38s both}
+@keyframes fftx{from{clip-path:inset(-20% 100% -20% -4%)}to{clip-path:inset(-20% -4% -20% -4%)}}
+button.k5::before{inset:.05rem .2rem;background:var(--kc);-webkit-mask:var(--hatch) center/100% 100% no-repeat;mask:var(--hatch) center/100% 100% no-repeat;opacity:0;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .42s cubic-bezier(.3,.7,.2,1),opacity .2s,filter .5s cubic-bezier(.3,.7,.2,1) .07s}
+button.k5:not([aria-pressed=true]):hover:not(:disabled)::before{opacity:.12;transform:none;clip-path:inset(0 0 0 0)}
+button.k5[aria-pressed=true]::before{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
+button.k5[aria-pressed=true]::before{transition:clip-path .6s cubic-bezier(.3,.7,.2,1) .95s,opacity .2s .95s,filter .5s cubic-bezier(.3,.7,.2,1) .07s}
+button.k5.ffdown[aria-pressed=true]:not(:disabled)::before{transform:none;filter:brightness(.6)}
+@media (prefers-reduced-motion:reduce){button.k5.ffdraw::after,button.k5.ffdraw .fftx{animation:none}}
+.ffrm button.k5.ffdraw::after,.ffrm button.k5.ffdraw .fftx{animation:none}
+button.k5.ffpre::after{-webkit-mask-position:0 0;mask-position:0 0}
+button.k5.ffpre .fftx{clip-path:inset(-20% 100% -20% -4%)}

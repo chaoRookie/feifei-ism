@@ -49,7 +49,7 @@ cp -R feifei-ism/feifei-ism ~/.claude/skills/
 | 包里的东西 | 做什么 |
 |---|---|
 | `references/DESIGN.md` | 设计宪法：造字、配色、字体、控件、动效，以及给图像模型的提示词和交付前的自查清单 |
-| `templates/` | 页面模板、颜料按钮、长页导航 |
+| `templates/` | 页面模板、六套按钮和动效小件、长页导航 |
 | `assets/` | 刮刀笔触、样板字、宣纸、颜料团 |
 | `scripts/` | 拼页、抠底、换色、造纸 |
 

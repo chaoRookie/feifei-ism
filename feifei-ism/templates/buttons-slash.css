@@ -1,0 +1,7 @@
+.ffslash{--sl:url(__ASSET:motion/slash_strip.webp__);position:absolute;left:-8%;right:-8%;top:8%;bottom:0;pointer-events:none;z-index:-1;background:var(--c);opacity:.9;-webkit-mask:var(--sl) 100% 0/2500% 100% no-repeat;mask:var(--sl) 100% 0/2500% 100% no-repeat}
+.ffslash.ffgo{animation:ffslash .3s steps(25,jump-none) both}
+@keyframes ffslash{from{-webkit-mask-position:0 0;mask-position:0 0}to{-webkit-mask-position:100% 0;mask-position:100% 0}}
+@media (prefers-reduced-motion:reduce){.ffslash.ffgo{animation:none}}
+.ffrm .ffslash.ffgo{animation:none}
+.ffslash.ffpre{-webkit-mask-position:0 0;mask-position:0 0}
+button:not(:disabled)>.ffslash{display:none}
