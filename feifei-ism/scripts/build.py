@@ -73,6 +73,8 @@ if 'buttons.css' in included and 'motion.css' not in included:
     print('WARNING: buttons.css without /*@include:motion.css*/, stroke textures missing', file=sys.stderr)
 if 'buttons.css' in included and 'motion.js' not in included:
     print('WARNING: buttons.css without /*@include:motion.js*/, buttons will not press', file=sys.stderr)
+if uses(r'class="[^"]*\bzi\b') and 'signs.css' not in included:
+    print('WARNING: layered signs (class zi) used without /*@include:signs.css*/, the main colour layer is missing', file=sys.stderr)
 open(a.out, 'w', encoding='utf-8').write(s)
 mb = len(s.encode()) / 1e6
 print('wrote %s  %.2f MB' % (a.out, mb))

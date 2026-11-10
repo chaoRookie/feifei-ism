@@ -19,8 +19,8 @@ description: 设计系统「肥肥主义」：用造字的办法，以厚涂为�
 
 1. 先想内容：每一节发生的是什么小事，用什么字来写（宪法 §3）。每写一行文字先问：盖住它，图还说得明白吗？说得明白就删（宪法 §3.0）。
 2. 复制 `templates/page.html` 当起点：题记、旁批布局、退后的排版、六套按钮里常用的几套、一个点的状态、拉笔图表、盖下去的方印、字的抹开、换页先擦后抹的幻灯片、三类彩蛋都写好了。动效小件和按钮样式用 `/*@include:文件名*/` 引进来（宪法 §8.4）：`motion.css`、`buttons.css`、`motion.js` 每页都要；用到戊（彩铅圈）加 `buttons-ring.css`，有禁用按钮加 `buttons-slash.css`。
-3. 需要新的字，把笔画逐条写好交给图像模型（宪法 §9.2 有固定提示词），验收后用 `python3 scripts/sprite.py cutout 原图.png 输出.webp --size 1400` 抠底。
-4. 素材用 `__ASSET:strokes/st0.webp__` 这样引用 `assets/` 里的图；自己的图放一个目录，用 `__FIG:文件名__` 引用。
+3. 需要新的字，把笔画逐条写好交给图像模型（宪法 §9.2 有固定提示词），验收后用 `python3 scripts/sprite.py cutout 原图.png 输出.webp --size 1400` 抠底；带主色的字再用 `sprite.py layers` 拆成分层母版（宪法 §9.4）。
+4. 素材用 `__ASSET:strokes/st0.webp__` 这样引用 `assets/` 里的图；样板字抽到哪支签都能用：页面引 `/*@include:signs.css*/`，字照宪法 §9.4 写成墨层加起伏层两层，跟着 `--c` 上色；不是网页的，用 `sprite.py tint` 按签出一张图。自己的图放一个目录，用 `__FIG:文件名__` 引用。
 5. 长页面把 `templates/nav.html` 贴到末尾，章节写 `<section data-t="章名">`，最多 8 个（宪法 §7.6）。
 6. 构建：`python3 scripts/build.py 源文件.html 输出.html --figs 你的图目录`。独立网页加 `--standalone`；要嵌进别的页面或平台，用默认输出。构建会把 `/*@include:…*/` 换成 `templates/` 里的文件；出现 WARNING 先照提示补上。
 7. 只需要配色时，`templates/tokens.css` 是 token；`--c` 是这件作品的主色，从宪法 §5.1 的十二支签抽一支。动效 token 在 `templates/motion.css`。
@@ -31,7 +31,7 @@ description: 设计系统「肥肥主义」：用造字的办法，以厚涂为�
 | 目录 | 内容 |
 |---|---|
 | `assets/strokes/` | st0~st5，六条中性灰的真实刮刀笔触。代码沿路径拉，再染成任何颜色 |
-| `assets/signs/` | 样板字（唱歌、转身、传话、记号、走开、人群、锁链、三个圆）、负形样板（`neg_helix.webp`，双螺旋）和质地样板（`fx_rough_bowl.webp` 手绘歪线的碗，`fx_crayon_sum.webp` 蜡笔炭笔的「总和」，见 §3.5）。可复用，也可当给图像模型的参考图；负形用 `sprite.py dye` 换签 |
+| `assets/signs/` | 样板字（唱歌 one、转身 turn、传话 pass、记号 mark、走开 leave、人群 crowd、锁链 chain、三个圆 three），每个字三个文件：原图 `sign_名字.webp`、墨层 `_ink`、起伏层 `_relief`，十二支签通用（§9.4）；负形样板（`neg_helix.webp`，双螺旋）和质地样板（`fx_rough_bowl.webp` 手绘歪线的碗，`fx_crayon_sum.webp` 蜡笔炭笔的「总和」，见 §3.5）。可复用，原图也可当给图像模型的参考图；负形用 `sprite.py dye` 换签 |
 | `assets/partners/` | 白龙的像素雪碧图，只用于彩蛋，一行 25 帧 |
 | `assets/btn/` | `slab*` 4 块长颜料，墨色和浅色各一套：甲、乙、丙、己按钮的颜料，也给流程图节点当颜料块 |
 | `assets/motion/` | 图像模型画的雪碧图：`ring_strip.webp` 戊的彩铅圈 49 帧，`slash_strip.webp` 禁用斜杠 25 帧，`hatch.webp` 戊选中时的彩铅排线 |

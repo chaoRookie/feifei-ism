@@ -6,6 +6,7 @@
 :root{color-scheme:light;--paper:#F9F4E8;--ink:#211C1C;--ink-2:#5C5650;--ink-3:#6F6961;--line:#DDD6C4;--c:#4B1F96;--f-t:"ZCOOL XiaoWei","Songti SC",serif;--f-b:"Noto Serif SC","Songti SC",serif;--f-e:"Cormorant Garamond",Georgia,serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace}
 /*@include:motion.css*/
 /*@include:buttons.css*/
+/*@include:signs.css*/
 *{box-sizing:border-box}
 body,.deck{background-color:var(--paper);background-image:url(__ASSET:paper/xuan_fiber.webp__),url(__ASSET:paper/xuan_cloud.webp__);background-size:768px,1181px;background-blend-mode:multiply,multiply}
 body{margin:0;color:var(--ink-2);font-family:var(--f-b);font-size:16.5px;line-height:1.9;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));overflow-x:clip}
@@ -27,7 +28,7 @@ section p{margin:0 0 1.5em;max-width:30rem}
 img{display:block;max-width:100%}
 .wide{width:100%;margin-top:2rem}
 .dense{width:100vw;max-width:100vw;margin:4.5rem calc(50% - 50vw) 0}
-.dense img{width:100%}
+.dense .zi{width:100%}
 .cap{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:1rem}
 button{font:inherit;color:inherit;background:none;border:0;border-radius:0;padding:0;margin:0;cursor:pointer;touch-action:manipulation}
 button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:1px dotted var(--ink);outline-offset:3px}
@@ -61,7 +62,7 @@ canvas{display:block;width:100%;height:auto}
 .sl .tt{position:absolute;left:5cqw;top:5cqw;font-family:var(--f-m);font-size:1.25cqw;color:var(--ink-3)}
 .sl .h{position:absolute;left:5cqw;bottom:6cqw;font-family:var(--f-t);font-size:3cqw;letter-spacing:.08em}
 .sl .s{position:absolute;left:5cqw;bottom:5cqw;font-size:1.9cqw;max-width:42cqw}
-.sl img{position:absolute}
+.sl>.zi{position:absolute}
 .mate{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));width:56px;height:56px;image-rendering:pixelated;pointer-events:none;z-index:7}
 .swim{position:fixed;left:0;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:96px;height:80px;image-rendering:pixelated;pointer-events:none;z-index:5}
 .swim.on{pointer-events:auto;cursor:pointer}
@@ -86,7 +87,7 @@ footer .up{margin-top:.5rem}
     <h1>小标题</h1>
     <div class="en">English Title</div>
   </div>
-  <img class="sign" id="first" src="__ASSET:signs/sign_one.webp__" alt="这个字写的是什么">
+  <span class="sign zi" id="first" role="img" aria-label="这个字写的是什么" style="--r:url(__ASSET:signs/sign_one_relief.webp__)"><i></i><img src="__ASSET:signs/sign_one_ink.webp__" alt=""></span>
 </header>
 
 <section>
@@ -95,7 +96,7 @@ footer .up{margin-top:.5rem}
     <div><p><b>要紧的一句用全黑。</b></p><p>其余的句子退后。只记发生了什么，不下结论。</p></div>
     <div class="pi">旁批放字、当场核对的账和小注。</div>
   </div>
-  <img class="sign wide" src="__ASSET:signs/sign_turn.webp__" alt="这个字写的是什么">
+  <span class="sign wide zi" role="img" aria-label="这个字写的是什么" style="--r:url(__ASSET:signs/sign_turn_relief.webp__)"><i></i><img src="__ASSET:signs/sign_turn_ink.webp__" alt=""></span>
 </section>
 
 <section>
@@ -114,22 +115,22 @@ footer .up{margin-top:.5rem}
 </section>
 </div>
 
-<div class="dense"><img class="sign" src="__ASSET:signs/sign_crowd.webp__" alt="满满一页的字，分层排开"></div>
+<div class="dense"><span class="sign zi" role="img" aria-label="满满一页的字，分层排开" style="--r:url(__ASSET:signs/sign_crowd_relief.webp__)"><i></i><img src="__ASSET:signs/sign_crowd_ink.webp__" alt=""></span></div>
 
 <div class="w">
 <section>
   <h2>幻灯片</h2>
   <div class="deck" id="deck" tabindex="0" aria-label="幻灯片，用左右方向键翻页">
-    <div class="sl on"><div class="tt">纪年</div><div class="h">小标题</div><img src="__ASSET:signs/sign_one.webp__" alt="" style="right:10cqw;top:7cqw;height:42cqw"></div>
-    <div class="sl"><div class="tt">一</div><div class="s">一个字，一句话。</div><img src="__ASSET:signs/sign_turn.webp__" alt="" style="left:5cqw;top:17cqw;width:90cqw"></div>
-    <div class="sl"><img src="__ASSET:signs/sign_crowd.webp__" alt="" style="left:0;top:0;width:100cqw"></div>
+    <div class="sl on"><div class="tt">纪年</div><div class="h">小标题</div><span class="zi" aria-hidden="true" style="--r:url(__ASSET:signs/sign_one_relief.webp__);right:10cqw;top:7cqw;width:36.6cqw"><i></i><img src="__ASSET:signs/sign_one_ink.webp__" alt=""></span></div>
+    <div class="sl"><div class="tt">一</div><div class="s">一个字，一句话。</div><span class="zi" aria-hidden="true" style="--r:url(__ASSET:signs/sign_turn_relief.webp__);left:5cqw;top:17cqw;width:90cqw"><i></i><img src="__ASSET:signs/sign_turn_ink.webp__" alt=""></span></div>
+    <div class="sl"><span class="zi" aria-hidden="true" style="--r:url(__ASSET:signs/sign_crowd_relief.webp__);left:0;top:0;width:100cqw"><i></i><img src="__ASSET:signs/sign_crowd_ink.webp__" alt=""></span></div>
   </div>
   <div class="cap"><button id="prev" class="k1" type="button">上一页</button><button id="next" class="k1 p" type="button">下一页</button><span class="t" id="pg">1 / 3</span></div>
   <p class="cap-text" id="captext"></p>
 </section>
 
 <section>
-  <img class="sign wide" src="__ASSET:signs/sign_leave.webp__" alt="结尾停在一个字上">
+  <span class="sign wide zi" role="img" aria-label="结尾停在一个字上" style="--r:url(__ASSET:signs/sign_leave_relief.webp__)"><i></i><img src="__ASSET:signs/sign_leave_ink.webp__" alt=""></span>
 </section>
 
 <footer data-shake>
