@@ -1,0 +1,145 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "extends": "none",
+  "name": "feifei-ism",
+  "title": "肥肥主义",
+  "description": "宣纸、墨、一个主色。颜色、字体、圆角全部由 tokens/feifei.tokens.json 生成。",
+  "dependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "theme": {
+      "font-sans": "\"Noto Serif SC\", \"Songti SC\", serif",
+      "font-serif": "\"Noto Serif SC\", \"Songti SC\", serif",
+      "font-heading": "\"ZCOOL XiaoWei\", \"Songti SC\", serif",
+      "font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace"
+    },
+    "light": {
+      "background": "#f9f4e8",
+      "foreground": "#211c1c",
+      "card": "#fcf9f1",
+      "card-foreground": "#211c1c",
+      "popover": "#fffdf8",
+      "popover-foreground": "#211c1c",
+      "primary": "#4b1f96",
+      "primary-foreground": "#f9f4e8",
+      "secondary": "#f4eee0",
+      "secondary-foreground": "#211c1c",
+      "muted": "#f4eee0",
+      "muted-foreground": "#6f6961",
+      "accent": "#f4eee0",
+      "accent-foreground": "#211c1c",
+      "destructive": "#211c1c",
+      "border": "#ddd6c4",
+      "input": "#ddd6c4",
+      "ring": "#211c1c",
+      "chart-1": "#4b1f96",
+      "chart-2": "#211c1c",
+      "chart-3": "#5c5650",
+      "chart-4": "#6f6961",
+      "chart-5": "#ddd6c4",
+      "sidebar": "#f4eee0",
+      "sidebar-foreground": "#211c1c",
+      "sidebar-primary": "#4b1f96",
+      "sidebar-primary-foreground": "#f9f4e8",
+      "sidebar-accent": "#fcf9f1",
+      "sidebar-accent-foreground": "#211c1c",
+      "sidebar-border": "#ddd6c4",
+      "sidebar-ring": "#211c1c",
+      "paper": "#f9f4e8",
+      "ink": "#211c1c",
+      "ink-2": "#5c5650",
+      "ink-3": "#6f6961",
+      "line": "#ddd6c4",
+      "c": "#4b1f96",
+      "s-sunken": "#f4eee0",
+      "s-raised": "#fcf9f1",
+      "s-overlay": "#fffdf8",
+      "scrim": "#211c1c4d",
+      "radius": "0rem"
+    },
+    "dark": {
+      "background": "#f9f4e8",
+      "foreground": "#211c1c",
+      "card": "#fcf9f1",
+      "card-foreground": "#211c1c",
+      "popover": "#fffdf8",
+      "popover-foreground": "#211c1c",
+      "primary": "#4b1f96",
+      "primary-foreground": "#f9f4e8",
+      "secondary": "#f4eee0",
+      "secondary-foreground": "#211c1c",
+      "muted": "#f4eee0",
+      "muted-foreground": "#6f6961",
+      "accent": "#f4eee0",
+      "accent-foreground": "#211c1c",
+      "destructive": "#211c1c",
+      "border": "#ddd6c4",
+      "input": "#ddd6c4",
+      "ring": "#211c1c",
+      "chart-1": "#4b1f96",
+      "chart-2": "#211c1c",
+      "chart-3": "#5c5650",
+      "chart-4": "#6f6961",
+      "chart-5": "#ddd6c4",
+      "sidebar": "#f4eee0",
+      "sidebar-foreground": "#211c1c",
+      "sidebar-primary": "#4b1f96",
+      "sidebar-primary-foreground": "#f9f4e8",
+      "sidebar-accent": "#fcf9f1",
+      "sidebar-accent-foreground": "#211c1c",
+      "sidebar-border": "#ddd6c4",
+      "sidebar-ring": "#211c1c",
+      "paper": "#f9f4e8",
+      "ink": "#211c1c",
+      "ink-2": "#5c5650",
+      "ink-3": "#6f6961",
+      "line": "#ddd6c4",
+      "c": "#4b1f96",
+      "s-sunken": "#f4eee0",
+      "s-raised": "#fcf9f1",
+      "s-overlay": "#fffdf8",
+      "scrim": "#211c1c4d",
+      "radius": "0rem"
+    }
+  },
+  "css": {
+    "@layer base": {
+      "body": {
+        "background-color": "var(--paper)",
+        "color": "var(--ink-2)",
+        "font-family": "var(--font-serif)",
+        "font-size": "16.5px",
+        "line-height": "1.9"
+      },
+      "h1, h2, h3, h4": {
+        "font-family": "var(--font-heading)",
+        "font-weight": "400",
+        "color": "var(--ink)"
+      },
+      "h1": {
+        "font-size": "3.1rem",
+        "letter-spacing": "0.02em",
+        "line-height": "1.2"
+      },
+      "h2": {
+        "font-size": "1.6rem"
+      },
+      "h3": {
+        "font-size": "1.15rem"
+      },
+      "h4": {
+        "font-size": "0.95rem"
+      },
+      "b, strong": {
+        "font-weight": "400",
+        "color": "var(--ink)"
+      },
+      "a": {
+        "color": "var(--ink)",
+        "text-decoration": "none",
+        "border-bottom": "1px solid var(--ink-3)"
+      }
+    }
+  },
+  "type": "registry:style"
+}

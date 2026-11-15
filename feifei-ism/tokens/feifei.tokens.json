@@ -1,0 +1,117 @@
+{
+  "paper": { "$type": "color", "$value": "#F9F4E8", "$description": "纸色，宣纸贴图的底，宪法 §5.2" },
+  "ink": { "$type": "color", "$value": "#211C1C", "$description": "标题、要紧的句子" },
+  "ink-2": { "$type": "color", "$value": "#5C5650", "$description": "默认正文" },
+  "ink-3": { "$type": "color", "$value": "#6F6961", "$description": "题记、说明；纸上最深处 4.52:1" },
+  "line": { "$type": "color", "$value": "#DDD6C4", "$description": "细线" },
+  "c": { "$type": "color", "$value": "{sign.yi}", "$description": "这件作品的主色，默认乙签，页面里覆盖" },
+  "sign": {
+    "$type": "color",
+    "$description": "十二支签，宪法 §5.1",
+    "jia": { "$value": "#BE1C1C" },
+    "yi": { "$value": "#4B1F96" },
+    "bing": { "$value": "#1F3F7A" },
+    "ding": { "$value": "#2B5B3A" },
+    "wu": { "$value": "#8A3A00" },
+    "ji": { "$value": "#7A1F5C" },
+    "geng": { "$value": "#0F5C66" },
+    "xin": { "$value": "#5A4A00" },
+    "ren": { "$value": "#A01840" },
+    "gui": { "$value": "#334E00" },
+    "zi": { "$value": "#6B2D1E" },
+    "chou": { "$value": "#2A2A8C" }
+  },
+  "s": {
+    "$type": "color",
+    "$description": "小面四级，宪法 §5.5",
+    "sunken": { "$value": "#F4EEE0", "$description": "凹下：把几样东西收成一组的底；--ink-3 在上面 4.7:1" },
+    "0": { "$value": "{paper}", "$description": "平：就是纸" },
+    "raised": { "$value": "#FCF9F1", "$description": "抬起：能拖动、能点开的一块" },
+    "overlay": { "$value": "#FFFDF8", "$description": "浮层：弹窗、下拉、提示" }
+  },
+  "scrim": { "$type": "color", "$value": "rgba(33, 28, 28, 0.3)", "$description": "遮罩：只表示下面不能操作" },
+  "shadow": {
+    "overlay": { "$type": "shadow", "$value": { "color": "rgba(33, 28, 28, 0.18)", "offsetX": "0px", "offsetY": "6px", "blur": "18px", "spread": "0px" }, "$description": "影子只给浮层" }
+  },
+  "st": {
+    "$type": "number",
+    "$description": "状态层：在面上叠一层墨的不透明度，借自 Material",
+    "hover": { "$value": 0.08 },
+    "press": { "$value": 0.12 },
+    "drag": { "$value": 0.16 }
+  },
+  "f": {
+    "$type": "fontFamily",
+    "t": { "$value": ["ZCOOL XiaoWei", "Songti SC", "serif"], "$description": "中文标题" },
+    "b": { "$value": ["Noto Serif SC", "Songti SC", "serif"], "$description": "正文" },
+    "e": { "$value": ["Cormorant Garamond", "Georgia", "serif"], "$description": "普通英文，斜体" },
+    "m": { "$value": ["JetBrains Mono", "ui-monospace", "Menlo", "monospace"], "$description": "题记、代码、数字" }
+  },
+  "fs": {
+    "$type": "dimension",
+    "$description": "字号，宪法 §6.1",
+    "body": { "$value": "16.5px" },
+    "h1": { "$value": "3.1rem", "$description": "约正文的三倍，不加粗" },
+    "h2": { "$value": "1.6rem" },
+    "h3": { "$value": "1.15rem" },
+    "h4": { "$value": "0.95rem" },
+    "quote": { "$value": "1.12rem" },
+    "small": { "$value": "0.8rem" }
+  },
+  "lh": { "body": { "$type": "number", "$value": 1.9 } },
+  "doc": {
+    "$description": "文档，宪法 §7",
+    "page-w": { "$type": "dimension", "$value": "210mm", "$description": "A4" },
+    "page-h": { "$type": "dimension", "$value": "297mm" },
+    "margin": { "$type": "dimension", "$value": "25mm" },
+    "body": { "$type": "dimension", "$value": "11pt" },
+    "lh": { "$type": "number", "$value": 1.7 }
+  },
+  "slide": {
+    "$description": "幻灯片，宪法 §7",
+    "w": { "$type": "dimension", "$value": "1920px" },
+    "h": { "$type": "dimension", "$value": "1080px" },
+    "safe": { "$type": "dimension", "$value": "96px", "$description": "安全边距" },
+    "title": { "$type": "dimension", "$value": "56px" },
+    "body": { "$type": "dimension", "$value": "28px" },
+    "min": { "$type": "dimension", "$value": "22px", "$description": "最小字号" },
+    "lh": { "$type": "number", "$value": 1.6 }
+  },
+  "seal": {
+    "$description": "方印，宪法 §7.3",
+    "size": { "$type": "dimension", "$value": "2.3rem" },
+    "rotate": { "$type": "number", "$value": -1.5, "$description": "度" },
+    "char": { "$type": "number", "$value": 0.357, "$description": "印上一个字的大小占印边长的比例" }
+  },
+  "measure": { "$type": "dimension", "$value": "30rem", "$description": "正文最宽" },
+  "t": {
+    "$type": "duration",
+    "$description": "动效时长，宪法 §8.2、§8.5",
+    "press": { "$value": "100ms" },
+    "hold": { "$value": "70ms" },
+    "press-min": { "$value": "170ms" },
+    "return": { "$value": "500ms" },
+    "hover": { "$value": "300ms" },
+    "exit": { "$value": "280ms" },
+    "release": { "$value": "380ms" },
+    "move": { "$value": "520ms" },
+    "smear-s": { "$value": "600ms" },
+    "smear": { "$value": "1500ms" },
+    "limp": { "$value": "1100ms", "$description": "极其无力：冰泉冷涩弦凝绝" },
+    "limp-hold": { "$value": "600ms" },
+    "poise": { "$value": "240ms", "$description": "极其有活力：先顿一拍" },
+    "burst": { "$value": "200ms", "$description": "大弦嘈嘈如急雨" },
+    "stagger": { "$value": "40ms" }
+  },
+  "e": {
+    "$type": "cubicBezier",
+    "$description": "缓动曲线，都只减速，不越过终点",
+    "out": { "$value": [0.3, 0.7, 0.2, 1] },
+    "exit": { "$value": [0.4, 0.14, 1, 1] },
+    "drop": { "$value": [0.5, 0, 0.9, 0.4] },
+    "move": { "$value": [0.65, 0, 0.35, 1], "$description": "支持 linear() 的浏览器用 motion.css 里的 smootherstep" },
+    "pull": { "$value": [0.12, 0.8, 0.25, 1], "$description": "支持 linear() 的浏览器用 motion.css 里的橡皮筋曲线" },
+    "limp": { "$value": [0.33, 0, 0.15, 1] },
+    "burst": { "$value": [0.4, 0.14, 0.3, 1] }
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>$pagetitle$</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" data-external="1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:ital@1&family=JetBrains+Mono&display=swap" data-external="1">
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+</head>
+<body>
+<main>
+<header>
+<p class="tj">$if(tiji)$$tiji$ · $endif$第$sign$签</p>
+$if(zi)$<p class="zi" aria-hidden="true">$zi$</p>$endif$
+<h1 class="title">$title$</h1>
+$if(subtitle)$<p class="sub">$subtitle$</p>$endif$
+</header>
+$body$
+<footer class="end">
+<div class="m">$if(date)$$date$<br>$endif$$if(source)$$source$$endif$</div>
+<div class="k"><div class="v">你的名字 记</div><div class="seal" role="img" aria-label="肥肥主义的印"><span>肥</span><span>肥</span><span>主</span><span>义</span></div></div>
+</footer>
+</main>
+</body>
+</html>

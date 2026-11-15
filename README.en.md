@@ -49,7 +49,9 @@ Make me a page in Feifei-ism.
 | In the package | What it does |
 |---|---|
 | `references/DESIGN.md` | The design constitution, in Chinese: invented characters, colour, type, controls, motion, prompts for image models, and a checklist for delivery |
-| `templates/` | Page template, six sets of paint buttons and the motion kit, long-page navigation |
+| `templates/` | Page and review-page templates, six sets of paint buttons and the motion kit, long-page navigation, xuan paper drawn in code |
+| `tokens/` | The single set of tokens: colour, type, size, spacing, duration, easing; `build-tokens.mjs` generates every stack's theme from it |
+| `stacks/` | Outlets beyond the web page: documents, slides, web, UI, charts, video, spreadsheets, canvas, each with a sample and its own notes (the UI outlet also needs `vendor/mdxcn` at the repo root) |
 | `assets/` | Palette-knife strokes, sample characters, xuan paper, slabs of paint, motion sprites |
 | `scripts/` | Page assembly, cut-out, recolouring, paper making |
 

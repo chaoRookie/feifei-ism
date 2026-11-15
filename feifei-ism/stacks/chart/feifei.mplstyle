@@ -1,0 +1,42 @@
+font.family: serif
+font.serif: Noto Serif SC, Songti SC, DejaVu Serif
+font.monospace: JetBrains Mono, Menlo, DejaVu Sans Mono
+font.size: 12.375
+font.weight: normal
+text.color: 5c5650
+axes.unicode_minus: False
+axes.facecolor: none
+axes.edgecolor: ddd6c4
+axes.linewidth: 0.75
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: False
+axes.titlesize: 19.2
+axes.titleweight: normal
+axes.titlecolor: 211c1c
+axes.titlelocation: left
+axes.labelsize: 9.6
+axes.labelweight: normal
+axes.labelcolor: 6f6961
+axes.prop_cycle: cycler('color', ['211c1c', '5c5650', '6f6961'])
+grid.color: ddd6c4
+grid.linewidth: 0.75
+xtick.color: 6f6961
+ytick.color: 6f6961
+xtick.labelcolor: 6f6961
+ytick.labelcolor: 5c5650
+xtick.labelsize: 9.6
+ytick.labelsize: 12.375
+legend.frameon: False
+legend.fontsize: 9.6
+legend.labelcolor: 5c5650
+lines.color: 211c1c
+patch.facecolor: 211c1c
+hatch.color: 211c1c
+figure.facecolor: none
+figure.titlesize: 37.2
+figure.titleweight: normal
+figure.dpi: 96
+savefig.dpi: 192
+savefig.facecolor: none
+savefig.transparent: True

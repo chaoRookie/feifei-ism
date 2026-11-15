@@ -1,0 +1,15 @@
+2026-11-14T23:28:04.517Z
+/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+PASS buttons: no console errors (file://)
+PASS buttons: k2 group selection sets aria-pressed
+PASS buttons: k5 toggle flips aria-pressed and redraws ring
+PASS buttons: k1 pressed gets .ffdown and releases — released after ~136ms
+PASS buttons: k6 renders seal spans — 4
+PASS buttons: disabled buttons render slash — 6
+PASS mdxcn before: no console errors (file://)
+PASS mdxcn after: no console errors (file://)
+PASS mdxcn after: --graph-accent follows --c — {"accent":"#4b1f96","c":"#4b1f96","background":"rgb(249, 244, 232)","frameImage":"none","mono":"\"JetBrains Mono\", \"Noto Serif SC\", \"Songti SC\", serif","link":"rgb(111, 105, 97)","corners":8,"cornersShown":0}
+PASS mdxcn after: dashed box frame removed — repeating-linear-gradient(to right, oklc -> none
+PASS mdxcn after: mono is JetBrains Mono with serif CJK fallback — "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace -> "JetBrains Mono", "Noto Serif SC", "Songti SC", serif
+PASS mdxcn after: timeline connector >= 3:1 on --paper — oklch(0.74 0.01 250) -> rgb(111, 105, 97), 4.95:1 vs #f9f4e8
+PASS mdxcn after: frame corner marks hidden — 0/8 shown

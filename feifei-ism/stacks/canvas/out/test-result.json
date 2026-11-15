@@ -1,0 +1,116 @@
+{
+ "chrome": "157.0.8103.52",
+ "runs": {
+  "auto": {
+   "probe": {
+    "canvasContent": "drawable",
+    "drawElementImage": true,
+    "requestPaint": true,
+    "layoutSubtree": false,
+    "drawElement": false,
+    "rough": true
+   },
+   "mode": "drawable",
+   "strokes": [
+    "rough",
+    "brush"
+   ],
+   "cardsAfterDrop": 3,
+   "buttonClickChangesSign": {
+    "before": "#2b5b3a",
+    "after": "#7a1f5c",
+    "hit": true,
+    "tag": "2026-11-14　画布出口样片　第己签"
+   },
+   "dragCard": {
+    "from": [
+     179,
+     368
+    ],
+    "to": [
+     259,
+     418
+    ],
+    "moved": true
+   },
+   "canvasPixels": {
+    "textDarkPixelsInCanvas": 6558,
+    "buttonMainColourPixelsInCanvas": 17397,
+    "toDataURL": true
+   },
+   "paints": 181,
+   "typedCardText": "卡 3新放的卡片",
+   "saveOverlay": {
+    "visible": true,
+    "src": "data:image/png;base64,",
+    "size": [
+     2560,
+     1600
+    ],
+    "darkPixelsWholeImage": 59097,
+    "darkPixelsCard1Text": 6558,
+    "focus": "shotx",
+    "closed": true
+   },
+   "errors": []
+  },
+  "fallback": {
+   "probe": {
+    "canvasContent": "drawable",
+    "drawElementImage": true,
+    "requestPaint": true,
+    "layoutSubtree": false,
+    "drawElement": false,
+    "rough": true
+   },
+   "mode": "fallback",
+   "strokes": [
+    "rough",
+    "brush"
+   ],
+   "cardsAfterDrop": 3,
+   "buttonClickChangesSign": {
+    "before": "#2b5b3a",
+    "after": "#7a1f5c",
+    "hit": true,
+    "tag": "2026-11-14　画布出口样片　第己签"
+   },
+   "dragCard": {
+    "from": [
+     179,
+     368
+    ],
+    "to": [
+     259,
+     418
+    ],
+    "moved": true
+   },
+   "canvasPixels": {
+    "textDarkPixelsInCanvas": 0,
+    "buttonMainColourPixelsInCanvas": 0,
+    "toDataURL": true
+   },
+   "paints": 130,
+   "typedCardText": "卡 3新放的卡片",
+   "saveOverlay": {
+    "visible": true,
+    "src": "data:image/png;base64,",
+    "size": [
+     2560,
+     1600
+    ],
+    "darkPixelsWholeImage": 60070,
+    "darkPixelsCard1Text": 6409,
+    "focus": "shotx",
+    "closed": true
+   },
+   "errors": []
+  },
+  "mobile390": {
+   "mode": "drawable",
+   "horizontalScroll": false,
+   "errors": []
+  }
+ }
+}

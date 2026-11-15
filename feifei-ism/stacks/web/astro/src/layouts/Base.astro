@@ -1,0 +1,32 @@
+---
+import '@ff/templates/tokens.css';
+import '@ff/templates/motion.css';
+import '@ff/templates/buttons.css';
+import '../../../shared/base.css';
+import motion from '@ff/templates/motion.js?raw';
+
+const { frontmatter = {}, title: own, label: ownLabel } = Astro.props;
+const title = own ?? frontmatter.title;
+const label = ownLabel ?? frontmatter.label;
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title} · 肥肥主义 Astro 多页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:ital@1&family=JetBrains+Mono&display=swap">
+</head>
+<body>
+<main class="w">
+<p class="t">{label}</p>
+<h1>{title}</h1>
+<div class="prose"><slot /></div>
+<footer class="pi">
+<p><a href="./index.html">第一篇 · 多页静态站</a> · <a href="./notes.html">第二篇 · MDX 写的一页</a> · <button class="k4" type="button" data-top>回到题记</button></p>
+</footer>
+</main>
+<script is:inline set:html={motion}></script>
+</body>
+</html>

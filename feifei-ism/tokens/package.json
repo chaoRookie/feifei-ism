@@ -1,0 +1,11 @@
+{
+  "name": "feifei-ism-tokens",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-tokens.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.0.0"
+  }
+}

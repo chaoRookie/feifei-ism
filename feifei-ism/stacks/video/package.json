@@ -1,0 +1,11 @@
+{
+  "name": "feifei-ism-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 ../../scripts/build.py scene.src.html scene.html && node record.mjs scene.html --duration 4 --fps 30 --out out/sample.mp4 --stills 0.5,3.0,3.9 && node check.mjs scene.html"
+  },
+  "dependencies": {
+    "playwright-core": "^1.65.1"
+  }
+}

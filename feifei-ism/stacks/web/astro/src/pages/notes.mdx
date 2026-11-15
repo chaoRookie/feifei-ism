@@ -1,0 +1,19 @@
+---
+layout: ../layouts/Base.astro
+title: MDX 写的一页
+label: 第乙签 · Astro · MDX
+---
+import Btn from '../components/Btn.astro';
+
+这一页用 MDX 写：正文是 Markdown，中间可以放组件。
+
+> 不把要紧的字加粗，把不要紧的字调淡。
+
+标题只放大不加粗，正文 `--fs-body`，行高 `--lh-body`，都从 token 来。
+
+<div class="cap">
+<Btn set="k6" seal="存">保存</Btn>
+<Btn set="k6" toggle pressed={false}>标记完成</Btn>
+<Btn set="k2" pressed={true}>选中</Btn>
+<Btn set="k2" pressed={false}>未选</Btn>
+</div>

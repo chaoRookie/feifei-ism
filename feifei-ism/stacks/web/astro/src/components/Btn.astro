@@ -1,0 +1,6 @@
+---
+const { set = 'k4', primary = false, seal, toggle = false, pressed, href } = Astro.props;
+const cls = [set, primary && 'p'].filter(Boolean).join(' ');
+const go = href ? `location.href=${JSON.stringify(href)}` : undefined;
+---
+<button class={cls} type="button" data-seal={seal} data-toggle={toggle || undefined} aria-pressed={pressed === undefined ? undefined : String(pressed)} onclick={go}><slot /></button>

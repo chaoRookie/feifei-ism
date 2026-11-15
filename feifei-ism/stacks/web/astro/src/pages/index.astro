@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Btn from '../components/Btn.astro';
+---
+<Base title="多页静态站" label="第乙签 · Astro · 两页静态">
+<div class="pp">
+<div>
+<p>Astro 把每一页在构建时写成一份静态 HTML，页面里没有框架的脚本。</p>
+<p><b>样式、贴图都内联进页面，页与页之间用相对路径互链，</b>整个文件夹从硬盘直接打开也能翻页。</p>
+<div class="cap"><Btn set="k1" primary href="./notes.html">下一篇</Btn></div>
+</div>
+<p class="pi">按钮的样子和按下去的动作来自 templates/buttons.css 和 motion.js，原样引进，不另写一份。</p>
+</div>
+</Base>
