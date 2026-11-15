@@ -1,0 +1,12 @@
+{
+  "title": "同一页幻灯片，四种出口的文件大小",
+  "name": "出口",
+  "unit": "KB",
+  "source": "stacks/slides/out 2026-11-14 ls -l，÷1024 取整",
+  "rows": [
+    ["Marp 网页", 69],
+    ["Marp PDF（四页）", 1140],
+    ["PptxGenJS", 572],
+    ["dom-to-pptx", 9239]
+  ]
+}

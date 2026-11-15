@@ -1,0 +1,160 @@
+<title>白板 · 肥肥主义画布</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&family=JetBrains+Mono&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<style>
+/*@include:tokens.css*/
+:root{--c:var(--sign-ding)}
+/*@include:motion.css*/
+/*@include:buttons.css*/
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink-2);font-family:var(--f-b);font-size:var(--fs-body);line-height:var(--lh-body);overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;border-radius:0;padding:0;margin:0;cursor:pointer;touch-action:manipulation}
+.board{position:fixed;inset:0;touch-action:none}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+.layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.card{position:absolute;left:0;top:0;width:min(17rem,calc(100vw - 48px));padding:.8rem 1.2rem 1rem;background:var(--s-raised);color:var(--ink-2);font-family:var(--f-b);font-size:var(--fs-body);line-height:var(--lh-body);pointer-events:auto;cursor:grab;user-select:none}
+.card.drag{cursor:grabbing}
+.card .no{font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3);letter-spacing:.04em}
+.card p{margin:.2rem 0 .7rem;cursor:text;user-select:text;outline:none}
+.card p:last-child{margin-bottom:0}
+.card p:focus-visible,.tools button:focus-visible{outline:1px dotted var(--ink);outline-offset:3px}
+header{position:fixed;left:max(24px,env(safe-area-inset-left,0px));top:18px;pointer-events:none}
+.t{font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3);letter-spacing:.04em}
+h1{font-family:var(--f-t);font-weight:400;font-size:var(--fs-h1);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:.1rem 0 0}
+.tools{position:fixed;left:max(24px,env(safe-area-inset-left,0px));right:24px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:.3rem .9rem;align-items:center}
+.say{flex-basis:100%;font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.shot{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:var(--scrim);padding:24px}
+.shot[hidden]{display:none}
+.shot .pane{max-width:min(960px,100%);max-height:100%;display:flex;flex-direction:column;gap:.6rem;padding:1rem 1.1rem .9rem;background:var(--s-overlay);box-shadow:var(--shadow-overlay)}
+.shot img{display:block;max-width:100%;max-height:calc(100vh - 11rem);height:auto;object-fit:contain;-webkit-touch-callout:default;user-select:auto}
+.shot .row{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;align-items:center;justify-content:space-between}
+</style>
+
+<div class="board" id="board">
+  <canvas id="cv" content="drawable" role="img" aria-label="白板：按住拖动画线，卡片能拖、能改">
+    <div class="card" drawable data-fx=".5" data-fy=".2">
+      <div class="no">卡 1</div>
+      <p contenteditable="true" spellcheck="false">卡片是真的网页字，能选、能改，读屏读得到。按下面这块，抽一支签，主色跟着换。</p>
+      <button class="k1 p" type="button" id="ism" aria-label="肥肥主义：抽一支签换主色">肥肥主义</button>
+    </div>
+    <div class="card" drawable data-fx=".14" data-fy=".46">
+      <div class="no">卡 2</div>
+      <p contenteditable="true" spellcheck="false">空白处按住拖动就是画线。选「卡片」再点一下，放一张新的。</p>
+    </div>
+  </canvas>
+  <div class="layer" id="layer"></div>
+</div>
+
+<header>
+  <div class="t" id="tag">2026-11-14　画布出口样片　第丁签</div>
+  <h1>白板</h1>
+</header>
+
+<div class="tools" role="toolbar" aria-label="笔和操作">
+  <button class="k2" type="button" data-tool="rough" aria-pressed="true">歪线</button>
+  <button class="k2" type="button" data-tool="brush" aria-pressed="false">毛笔</button>
+  <button class="k2" type="button" data-tool="card" aria-pressed="false">卡片</button>
+  <button class="k4" type="button" id="wipe">擦净</button>
+  <button class="k6" type="button" id="save" data-seal="存">存图</button>
+  <div class="say" id="say" aria-live="polite"></div>
+</div>
+
+<div class="shot" id="shot" role="dialog" aria-modal="true" aria-label="白板存成的图" hidden>
+  <div class="pane">
+    <img id="shotimg" alt="白板存成的图">
+    <div class="row"><span class="t">右键图片「存储图像」，手机上长按图片保存。</span><button class="k4" type="button" id="shotx">收起</button></div>
+  </div>
+</div>
+
+<script>
+/*@include:motion.js*/
+(function(){
+ const D=document,R=D.documentElement,cv=D.getElementById('cv'),board=D.getElementById('board'),layer=D.getElementById('layer'),say=D.getElementById('say'),tag=D.getElementById('tag');
+ const css=n=>getComputedStyle(R).getPropertyValue(n).trim();
+ const P2=CanvasRenderingContext2D.prototype,PC=HTMLCanvasElement.prototype,probe=D.createElement('canvas');
+ probe.setAttribute('content','drawable');
+ const forced=/fallback/.test(location.hash+location.search);
+ const MODE=forced?'fallback':(probe.content==='drawable'&&'drawElementImage' in P2&&'requestPaint' in PC)?'drawable':('layoutSubtree' in PC&&'drawElement' in P2)?'layoutsubtree':'fallback';
+ if(MODE==='layoutsubtree'){cv.removeAttribute('content');cv.setAttribute('layoutsubtree','')}
+ if(MODE==='fallback')cv.removeAttribute('content');
+ const x=cv.getContext('2d'),RG=window.rough?rough.canvas(cv):null;
+ const hex=h=>{const m=h.replace('#','');return[0,2,4].map(i=>parseInt(m.slice(i,i+2),16))};
+ const INK=css('--ink'),INKRGB=hex(INK);
+ const SIGNS=[['甲','jia'],['乙','yi'],['丙','bing'],['丁','ding'],['戊','wu'],['己','ji'],['庚','geng'],['辛','xin'],['壬','ren'],['癸','gui'],['子','zi'],['丑','chou']];
+ const HS=(a,b)=>{let h=Math.imul(a*374761393+b*668265263|0,1274126177);h=Math.imul(h^h>>>13,1274126177);return((h^h>>>16)>>>0)/4294967296};
+ let k=1,W=0,H=0,tool='rough',live=null,drag=null,seed=1,wipeP=0,placed=false,q=false,tex=null,paints=0,si=3,nCard=0;
+ const paper=D.createElement('canvas'),grain=D.createElement('canvas'),ink=D.createElement('canvas'),strokes=[];
+ const cards=[...cv.querySelectorAll('.card')].map(el=>({el,id:++nCard,x:0,y:0,fx:+el.dataset.fx,fy:+el.dataset.fy}));
+ if(MODE==='fallback')cards.forEach(c=>layer.appendChild(c.el));
+
+ function rag(id,w,h,j){const P=[],n=a=>Math.max(3,Math.round(a/24)),nx=n(w),ny=n(h);
+  for(let i=0;i<nx;i++)P.push([w*i/nx,HS(id,i)*j]);for(let i=0;i<ny;i++)P.push([w-HS(id,100+i)*j,h*i/ny]);
+  for(let i=nx;i>0;i--)P.push([w*i/nx,h-HS(id,200+i)*j]);for(let i=ny;i>0;i--)P.push([HS(id,300+i)*j,h*i/ny]);return P}
+ function place(c){if(MODE!=='fallback')return;const w=c.el.offsetWidth,h=c.el.offsetHeight;c.el.style.transform='translate('+c.x+'px,'+c.y+'px)';c.el.style.clipPath='polygon('+rag(c.id,w,h,5).map(p=>p[0].toFixed(1)+'px '+p[1].toFixed(1)+'px').join(',')+')'}
+
+ function sheet(c,base){c.width=cv.width;c.height=cv.height;const g=c.getContext('2d');g.fillStyle=base;g.fillRect(0,0,c.width,c.height);if(!tex)return;g.globalCompositeOperation='multiply';
+  [[tex[0],768],[tex[1],1181]].forEach(([im,s])=>{if(!im)return;const p=g.createPattern(im,'repeat');p.setTransform(new DOMMatrix().scale(s*k/im.width));g.fillStyle=p;g.fillRect(0,0,c.width,c.height)})}
+ function dense(P,step){const o=[P[0]];for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i],d=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.ceil(d/step));for(let j=1;j<=n;j++)o.push([a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n])}
+  for(let r=0;r<3;r++)for(let i=1;i<o.length-1;i++)o[i]=[(o[i-1][0]+2*o[i][0]+o[i+1][0])/4,(o[i-1][1]+2*o[i][1]+o[i+1][1])/4];return o}
+ function paintStroke(g,s){const pts=s.pts.map(p=>[p[0]*k,p[1]*k]);if(pts.length<2)return;
+  if(s.pen==='brush'){FF.hair(g,dense(pts,1.5*k),18*k,1,s.seed,INKRGB);return}
+  if(RG&&g===x){RG.curve(pts,{seed:s.seed,roughness:1.1,bowing:.8,stroke:INK,strokeWidth:2.2*k});return}
+  if(window.rough&&g!==x){rough.canvas(g.canvas).curve(pts,{seed:s.seed,roughness:1.1,bowing:.8,stroke:INK,strokeWidth:2.2*k});return}
+  g.strokeStyle=INK;g.lineWidth=2.2*k;g.lineJoin=g.lineCap='round';g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke()}
+ function rebuild(){sheet(paper,css('--paper'));sheet(grain,'#fff');ink.width=cv.width;ink.height=cv.height;const g=ink.getContext('2d');strokes.forEach(s=>paintStroke(g,s))}
+ function drawCard(c){const w=c.el.offsetWidth,h=c.el.offsetHeight,X=c.x*k,Y=c.y*k;if(!w||!h)return;x.save();x.beginPath();rag(c.id,w*k,h*k,5*k).forEach((p,i)=>i?x.lineTo(X+p[0],Y+p[1]):x.moveTo(X+p[0],Y+p[1]));x.closePath();x.clip();
+  if(MODE==='drawable')x.drawElementImage(c.el,X,Y,w*k,h*k);else x.drawElement(c.el,X,Y,w*k,h*k);
+  x.globalCompositeOperation='multiply';x.drawImage(grain,X,Y,w*k,h*k,X,Y,w*k,h*k);x.restore()}
+ function render(){x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='source-over';x.globalAlpha=1;x.clearRect(0,0,cv.width,cv.height);x.drawImage(paper,0,0);
+  if(wipeP>0){x.save();x.beginPath();x.rect(wipeP*cv.width,0,cv.width,cv.height);x.clip();x.drawImage(ink,0,0);x.restore()}else x.drawImage(ink,0,0);
+  if(live)paintStroke(x,live);if(MODE!=='fallback')cards.forEach(c=>{try{drawCard(c)}catch(e){x.restore()}});paints++}
+ const ask=()=>{if(MODE==='drawable'){cv.requestPaint();return}if(q)return;q=true;requestAnimationFrame(()=>{q=false;render()})};
+ if(MODE==='drawable')cv.onpaint=render;
+
+ function size(cb){const cw=cv.clientWidth,ch=cv.clientHeight;if(!cw||!ch)return;cv.width=Math.max(cb?cb.inlineSize:0,Math.round(cw*devicePixelRatio));cv.height=Math.max(cb?cb.blockSize:0,Math.round(ch*devicePixelRatio));k=cv.width/cw;W=cw;H=ch;
+  if(!placed){cards.forEach(c=>{c.x=Math.round(c.fx*W);c.y=Math.round(c.fy*H)});placed=true}cards.forEach(c=>{c.x=Math.max(0,Math.min(c.x,W-c.el.offsetWidth));c.y=Math.max(0,Math.min(c.y,H-c.el.offsetHeight));place(c)});rebuild();ask()}
+ const ro=new ResizeObserver(es=>{const e=es[0];size(e.devicePixelContentBoxSize?e.devicePixelContentBoxSize[0]:null)});
+ try{ro.observe(cv,{box:'device-pixel-content-box'})}catch(_){ro.observe(cv)}
+
+ const pos=e=>{const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+ function addCard(p,text){const el=D.createElement('div');el.className='card';el.setAttribute('drawable','');const c={el,id:++nCard,x:p[0],y:p[1]};
+  el.innerHTML='<div class="no">卡 '+c.id+'</div><p contenteditable="true" spellcheck="false"></p>';el.querySelector('p').textContent=text||'写点什么。';
+  (MODE==='fallback'?layer:cv).appendChild(el);cards.push(c);c.x=Math.min(c.x,W-el.offsetWidth);c.y=Math.min(c.y,H-el.offsetHeight);place(c);ask();return c}
+ board.addEventListener('pointerdown',e=>{const card=e.target.closest&&e.target.closest('.card');
+  if(card){if(e.target.closest('button,[contenteditable]'))return;const c=cards.find(z=>z.el===card),p=pos(e);drag={c,dx:p[0]-c.x,dy:p[1]-c.y};card.classList.add('drag');board.setPointerCapture(e.pointerId);e.preventDefault();return}
+  if(e.target!==cv)return;const p=pos(e);if(tool==='card'){const c=addCard(p);const t=c.el.querySelector('p');setTimeout(()=>{t.focus();getSelection().selectAllChildren(t)},0);return}
+  live={pen:tool,pts:[p],seed:seed++};board.setPointerCapture(e.pointerId);ask()});
+ board.addEventListener('pointermove',e=>{if(drag){const p=pos(e);drag.c.x=p[0]-drag.dx;drag.c.y=p[1]-drag.dy;place(drag.c);ask();return}
+  if(!live)return;const p=pos(e),z=live.pts[live.pts.length-1];if(Math.hypot(p[0]-z[0],p[1]-z[1])<4)return;live.pts.push(p);ask()});
+ const up=()=>{if(drag){drag.c.el.classList.remove('drag');drag=null}if(live){if(live.pts.length>1){strokes.push(live);paintStroke(ink.getContext('2d'),live)}live=null;ask()}};
+ board.addEventListener('pointerup',up);board.addEventListener('pointercancel',up);
+ board.addEventListener('input',e=>{const c=cards.find(z=>z.el.contains(e.target));if(c){place(c);ask()}});
+
+ D.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>{tool=b.dataset.tool;D.querySelectorAll('[data-tool]').forEach(o=>o.setAttribute('aria-pressed',String(o===b)))}));
+ D.getElementById('wipe').addEventListener('click',()=>{if(!strokes.length)return;FF.play(ink,FF.t('--t-exit',280),FF.ease.exit,p=>{wipeP=p;ask()}).then(ok=>{if(!ok)return;strokes.length=0;ink.getContext('2d').clearRect(0,0,ink.width,ink.height);wipeP=0;ask()})});
+ function wrap(g,text,maxW){const L=[];text.split('\n').forEach(t=>{let s='';for(const ch of t){if(s&&!'，。、；：！？」』）,.;:!?)'.includes(ch)&&g.measureText(s+ch).width>maxW){L.push(s);s=ch}else s+=ch}L.push(s)});return L}
+ function cardsFlat(g){cards.forEach(c=>{const el=c.el,w=el.offsetWidth,h=el.offsetHeight,X=c.x*k,Y=c.y*k,er=el.getBoundingClientRect();g.save();g.beginPath();rag(c.id,w*k,h*k,5*k).forEach((p,i)=>i?g.lineTo(X+p[0],Y+p[1]):g.moveTo(X+p[0],Y+p[1]));g.closePath();g.fillStyle=css('--s-raised');g.fill();g.clip();
+  el.querySelectorAll('.no,p,button').forEach(n=>{const st=getComputedStyle(n),r=n.getBoundingClientRect(),nx=X+(r.left-er.left)*k,ny=Y+(r.top-er.top)*k,fs=parseFloat(st.fontSize)*k,lh=(parseFloat(st.lineHeight)||parseFloat(st.fontSize)*1.4)*k;
+   g.font=st.fontWeight+' '+fs+'px '+st.fontFamily;g.textBaseline='middle';
+   if(n.tagName==='BUTTON'){g.fillStyle=css('--c');g.fillRect(nx,ny,r.width*k,r.height*k);g.fillStyle=st.color;g.textAlign='center';g.fillText(n.textContent.trim(),nx+r.width*k/2,ny+r.height*k/2);g.textAlign='start';return}
+   g.fillStyle=st.color;wrap(g,n.innerText,r.width*k+1).forEach((t,i)=>g.fillText(t,nx,ny+lh*(i+.5)))});g.restore()})}
+ function snap(){if(MODE!=='drawable')render();if(MODE!=='fallback')return cv.toDataURL('image/png');const o=D.createElement('canvas');o.width=cv.width;o.height=cv.height;const g=o.getContext('2d');g.drawImage(cv,0,0);cardsFlat(g);return o.toDataURL('image/png')}
+ const shot=D.getElementById('shot'),shotimg=D.getElementById('shotimg'),shotx=D.getElementById('shotx');let back=null;
+ const closeShot=()=>{if(shot.hidden)return;shot.hidden=true;shotimg.removeAttribute('src');if(back&&back.focus)back.focus()};
+ D.getElementById('save').addEventListener('click',()=>{back=D.activeElement;shotimg.src=snap();shot.hidden=false;FF.smear(shot.querySelector('.pane'),{ms:FF.t('--t-smear-s',600),dx:10});shotx.focus()});
+ shotx.addEventListener('click',closeShot);shot.addEventListener('click',e=>{if(e.target===shot)closeShot()});D.addEventListener('keydown',e=>{if(e.key==='Escape')closeShot()});
+ D.getElementById('ism').addEventListener('click',()=>{si=(si+1+Math.floor(Math.random()*11))%12;R.style.setProperty('--c','var(--sign-'+SIGNS[si][1]+')');tag.textContent=tag.textContent.replace(/第.签/,'第'+SIGNS[si][0]+'签');ask()});
+
+ const ways={drawable:'画布：HTML-in-Canvas，卡片用 drawElementImage 画进画布，纸纹从卡片底下透上来。',layoutsubtree:'画布：HTML-in-Canvas 旧版接口（layoutsubtree 加 drawElement）。',fallback:'画布：这个浏览器不支持 HTML-in-Canvas，卡片是叠在画布上的普通网页。'};
+ ways.forced='画布：已手动切到退路，卡片是叠在画布上的普通网页。';
+ say.textContent=ways[forced?'forced':MODE]+(RG?'':' 歪线库没加载，歪线退回直线。');
+ Promise.all([FF.load('__ASSET:paper/xuan_fiber.webp__'),FF.load('__ASSET:paper/xuan_cloud.webp__')]).then(t=>{tex=t;rebuild();ask()});
+ D.fonts&&D.fonts.ready.then(()=>{cards.forEach(place);ask()});
+ window.__board={mode:MODE,forced,get paints(){return paints},get tool(){return tool},cards,strokes,get tex(){return !!(tex&&tex[0]&&tex[1])},ask,render};
+})();
+</script>

@@ -1,0 +1,21 @@
+{
+  "name": "feifei-ism-stack-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:react": "vite build --config react/vite.config.mjs",
+    "build:astro": "astro build --root astro",
+    "verify": "node verify.mjs",
+    "build": "npm run build:react && npm run build:astro && npm run verify"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^8.1.6",
+    "@vitejs/plugin-react": "^6.3.0",
+    "astro": "^7.4.12",
+    "playwright-core": "^1.65.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "vite": "^8.3.8",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}

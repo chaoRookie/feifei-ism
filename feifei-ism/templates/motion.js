@@ -11,8 +11,11 @@ const cssv=n=>getComputedStyle(R).getPropertyValue(n).trim();
 FF.t=(n,d)=>{const v=cssv(n),m=parseFloat(v);return isNaN(m)?d:(/ms$/.test(v)?m:/s$/.test(v)?m*1000:m)};
 function bez(x1,y1,x2,y2){const cx=3*x1,bx=3*(x2-x1)-cx,ax=1-cx-bx,cy=3*y1,by=3*(y2-y1)-cy,ay=1-cy-by,X=t=>((ax*t+bx)*t+cx)*t,Y=t=>((ay*t+by)*t+cy)*t,Dv=t=>(3*ax*t+2*bx)*t+cx;return x=>{if(x<=0)return 0;if(x>=1)return 1;let t=x;for(let i=0;i<8;i++){const e=X(t)-x;if(Math.abs(e)<1e-6)break;const d=Dv(t);if(Math.abs(d)<1e-6)break;t-=e/d}if(!(t>=0&&t<=1)){let a=0,b=1;t=x;for(let i=0;i<40;i++){if(X(t)<x)a=t;else b=t;t=(a+b)/2}}return Y(t)}}
 FF.bez=bez;
-const E=FF.ease={pull:t=>t<=0?0:t>=1?1:(1-1/(5*t+1))/(1-1/6),out:bez(.3,.7,.2,1),exit:bez(.4,.14,1,1),drop:bez(.5,0,.9,.4),move:t=>t*t*t*(t*(t*6-15)+10),brush:t=>Math.pow(Math.max(0,Math.min(1,t)),1.45),scrape:t=>.18*t+.82*t*t*t,lin:t=>t};
-const C=FF.css={out:'cubic-bezier(.3,.7,.2,1)',exit:'cubic-bezier(.4,.14,1,1)',drop:'cubic-bezier(.5,0,.9,.4)',move:CSS.supports('transition-timing-function','linear(0,1)')?'linear(0, 0.0007, 0.0051, 0.0161, 0.0355, 0.0645, 0.1035, 0.1522, 0.2099, 0.2752, 0.3466, 0.4222, 0.5, 0.5778, 0.6534, 0.7248, 0.7901, 0.8478, 0.8965, 0.9355, 0.9645, 0.9839, 0.9949, 0.9993, 1)':'cubic-bezier(.65,0,.35,1)'};
+const cb=(n,d)=>{const m=cssv(n).match(/cubic-bezier\(([^)]+)\)/),a=m?m[1].split(',').map(Number):[];return a.length===4&&a.every(x=>!isNaN(x))?a:d};
+const K={out:cb('--e-out',[.3,.7,.2,1]),exit:cb('--e-exit',[.4,.14,1,1]),drop:cb('--e-drop',[.5,0,.9,.4]),limp:cb('--e-limp',[.33,0,.15,1]),burst:cb('--e-burst',[.4,.14,.3,1])};
+const E=FF.ease={pull:t=>t<=0?0:t>=1?1:(1-1/(5*t+1))/(1-1/6),out:bez(...K.out),exit:bez(...K.exit),drop:bez(...K.drop),limp:bez(...K.limp),burst:bez(...K.burst),move:t=>t*t*t*(t*(t*6-15)+10),brush:t=>Math.pow(Math.max(0,Math.min(1,t)),1.45),scrape:t=>.18*t+.82*t*t*t,lin:t=>t};
+const kc=k=>'cubic-bezier('+K[k].join(',')+')';
+const C=FF.css={out:kc('out'),exit:kc('exit'),drop:kc('drop'),limp:kc('limp'),burst:kc('burst'),move:CSS.supports('transition-timing-function','linear(0,1)')?'linear(0, 0.0007, 0.0051, 0.0161, 0.0355, 0.0645, 0.1035, 0.1522, 0.2099, 0.2752, 0.3466, 0.4222, 0.5, 0.5778, 0.6534, 0.7248, 0.7901, 0.8478, 0.8965, 0.9355, 0.9645, 0.9839, 0.9949, 0.9993, 1)':'cubic-bezier(.65,0,.35,1)'};
 const play=FF.play=function(o,ms,ease,fn){const id=(o.__ff||0)+1;o.__ff=id;return new Promise(r=>{if(FF.rm||ms<=0){fn(1);r(true);return}const a=performance.now();(function f(n){if(o.__ff!==id){r(false);return}const t=Math.min(1,(n-a)/ms);fn(ease(t));t<1?requestAnimationFrame(f):r(true)})(a)})};
 FF.stop=o=>{o.__ff=(o.__ff||0)+1};
 FF.tween=(ms,fn)=>play({},ms,E.move,fn);

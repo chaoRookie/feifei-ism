@@ -1,0 +1,12 @@
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink-2);font-family:var(--f-b);font-size:var(--fs-body);line-height:var(--lh-body);background-color:var(--paper);background-image:url('../../../assets/paper/xuan_fiber.webp'),url('../../../assets/paper/xuan_cloud.webp');background-size:768px,1181px;background-blend-mode:multiply,multiply}
+main{max-width:60rem;margin:0 auto;padding:3.5rem 16px 6rem}
+.t{font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3);margin:0}
+h1{font-family:var(--f-t);font-weight:400;font-size:var(--fs-h1);line-height:1.2;color:var(--ink);margin:2.4rem 0 3rem}
+.row{display:grid;grid-template-columns:9rem minmax(0,1fr);align-items:center;column-gap:2rem;padding-block:1.1rem}
+.row+.row{margin-top:.4rem}
+.set{font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3)}
+.set b{display:block;font-family:var(--f-t);font-weight:400;font-size:var(--fs-h3);color:var(--ink)}
+.cells{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center}
+.lead{margin:0 0 2.4rem;display:flex;gap:1.4rem;align-items:center}
+@media (max-width:640px){.row{grid-template-columns:minmax(0,1fr);row-gap:.6rem}}

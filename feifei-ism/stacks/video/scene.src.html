@@ -1,0 +1,44 @@
+<title>走开 · 视频出口样片</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:ital@1&family=JetBrains+Mono&display=swap">
+<style>
+/*@include:tokens.css*/
+:root{--c:var(--sign-geng)}
+/*@include:motion.css*/
+/*@include:signs.css*/
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:var(--paper) url(__ASSET:paper/xuan_sheet.webp__) center/cover no-repeat;color:var(--ink-2);font-family:var(--f-b);font-size:var(--fs-body);line-height:var(--lh-body)}
+.stage{position:absolute;inset:0}
+.t{position:absolute;left:48px;top:40px;font-family:var(--f-m);font-size:var(--fs-small);color:var(--ink-3);letter-spacing:.04em}
+.zi{position:absolute;left:48px;top:118px;width:760px}
+.tl{position:absolute;left:48px;bottom:56px}
+h1{margin:0;font-family:var(--f-t);font-weight:400;font-size:var(--fs-h1);line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.en{font-family:var(--f-e);font-style:italic;font-size:var(--fs-quote);color:var(--ink-2)}
+.k{position:absolute;right:48px;bottom:56px;display:flex;gap:.55rem;align-items:flex-end}
+.v{writing-mode:vertical-rl;font-size:.84rem;letter-spacing:.3em;color:var(--ink)}
+.seal{position:relative;width:2.3rem;height:2.3rem;background:var(--c);text-align:center;color:var(--paper);font-family:var(--f-t);font-size:.82rem;line-height:1.05;display:grid;grid-template-columns:1fr 1fr;place-items:center;padding:.2rem;transform:rotate(-1.5deg)}
+</style>
+
+<div class="stage" data-shake>
+  <div class="t">2026-11-14　视频出口样片　第庚签</div>
+  <span class="zi" id="zi" role="img" aria-label="一排人里，戴帽子的那一个往右走开了" style="--r:url(__ASSET:signs/sign_leave_relief.webp__)"><i></i><img src="__ASSET:signs/sign_leave_ink.webp__" alt=""></span>
+  <div class="tl" id="tl"><h1>走开</h1><div class="en">Leave</div></div>
+  <div class="k"><div class="v">你的名字 记</div><span class="seal" id="seal" role="img" aria-label="肥肥主义的印"><span>肥</span><span>肥</span><span>主</span><span>义</span></span></div>
+</div>
+
+<script>
+/*@include:motion.js*/
+(function(){
+ const $=s=>document.getElementById(s),zi=$('zi'),tl=$('tl'),seal=$('seal');
+ const lead=FF.t('--t-hover',300),stag=140,smear=FF.t('--t-smear',1500),hold=FF.t('--t-limp-hold',600);
+ const imgs=[...document.images].map(i=>i.decode().catch(()=>null));
+ FF.hide(zi);FF.hide(tl);seal.style.opacity='0';
+ window.__sceneReady=Promise.all([FF.ready,document.fonts.ready,...imgs]).then(()=>{
+  FF.hide(zi);FF.hide(tl);
+  setTimeout(()=>FF.smear(zi),lead);
+  setTimeout(()=>FF.smear(tl),lead+stag);
+  setTimeout(()=>{seal.style.opacity='';FF.stamp(seal)},lead+stag+smear+hold);
+ });
+})();
+</script>

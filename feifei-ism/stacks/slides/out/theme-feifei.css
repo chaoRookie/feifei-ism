@@ -1,0 +1,22 @@
+/* @theme feifei */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:ital@1&family=JetBrains+Mono&display=swap');
+section{width:1920px;height:1080px;box-sizing:border-box;padding:96px;background:#f9f4e8 url('assets/paper.jpg') center/cover no-repeat;color:#5c5650;font-family:'Noto Serif SC', 'Songti SC', serif;font-size:28px;line-height:1.6;display:block;position:relative}
+section h1{font-family:'ZCOOL XiaoWei', 'Songti SC', serif;font-weight:400;font-size:56px;line-height:1.2;letter-spacing:.02em;color:#211c1c;margin:0 0 42px}
+section h2,section h3{font-family:'ZCOOL XiaoWei', 'Songti SC', serif;font-weight:400;color:#211c1c;font-size:28px;margin:0 0 28px}
+section p{margin:0 0 28px;max-width:29.09em}
+section strong,section b{font-weight:400;color:#211c1c}
+section em{font-family:'Cormorant Garamond', Georgia, serif;font-style:italic;font-size:1.1em}
+section code{font-family:'JetBrains Mono', ui-monospace, Menlo, monospace;font-size:22px;color:#5c5650;background:none}
+section a{color:inherit;text-decoration:underline 1px #ddd6c4;text-underline-offset:.2em}
+section ol,section ul{list-style:none;padding:0;margin:0;max-width:29.09em;counter-reset:n}
+section li{counter-increment:n;margin:0 0 17px}
+section li::before{content:counter(n,decimal-leading-zero);font-family:'JetBrains Mono', ui-monospace, Menlo, monospace;font-size:22px;color:#6f6961;margin-right:22px}
+section img{position:absolute;right:96px;bottom:96px;width:1071px;height:auto}
+section header{position:absolute;top:96px;left:96px;font-family:'JetBrains Mono', 'Noto Serif SC', 'Songti SC', serif;font-size:22px;letter-spacing:.04em;color:#6f6961}
+section footer{position:absolute;bottom:96px;left:96px;font-family:'JetBrains Mono', 'Noto Serif SC', 'Songti SC', serif;font-size:22px;color:#6f6961}
+section::after{position:absolute;inset:96px 96px auto auto;padding:0;margin:0;width:auto;height:auto;line-height:1;text-align:right;font-family:'JetBrains Mono', ui-monospace, Menlo, monospace;font-size:22px;color:#6f6961}
+section.cover img{right:auto;bottom:auto;left:50%;top:50%;width:1728px;transform:translate(-50%,-46%)}
+section.end img{right:auto;left:96px;bottom:96px;width:857px}
+section.end .k{position:absolute;right:96px;bottom:96px;display:flex;gap:13px;align-items:flex-end}
+section.end .v{writing-mode:vertical-rl;font-size:22px;letter-spacing:.3em;color:#211c1c;font-family:'Noto Serif SC', 'Songti SC', serif}
+section.end .seal{width:62px;height:62px;box-sizing:border-box;padding:5px;background:#4b1f96;color:#f9f4e8;font-family:'ZCOOL XiaoWei', 'Songti SC', serif;font-size:22px;line-height:1.05;display:grid;grid-template-columns:1fr 1fr;place-items:center;transform:rotate(-1.5deg)}

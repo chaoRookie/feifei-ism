@@ -69,9 +69,9 @@ function swapNext(){si.classList.add('swap');setTimeout(()=>{next();requestAnima
 function vis(){const on=E>.002&&gl&&tx;cv.style.visibility=on?'visible':'hidden';si.style.visibility=on?'hidden':'visible';const sh=open&&E>.72;L.forEach(l=>l.classList.toggle('show',sh));}
 function setOpen(v){open=v;eT=v?1:0;$('ffsw').setAttribute('aria-expanded',v);$('ffsw').setAttribute('aria-label',v?'收起':'按一下');if(!v){paT=0;pend=-1}}
 function loop(t){const dt=Math.min(50,t-last);last=t;const pE=E,ppa=pa,pq=q;
-if(qg<qT)qg=Math.min(qT,qg+dt/900);else if(qg>qT)qg=Math.max(qT,qg-dt/620);q=qg<=0?0:qg>=1?1:qg*qg*(3-2*qg)*.35+qg*.65;if(q!==pq){show(q);if(q===0&&pq>0&&!open&&flat===false)swapNext()}
+if(qg<qT)qg=Math.min(qT,qg+dt/320);else if(qg>qT)qg=Math.max(qT,qg-dt/300);q=qg<=0?0:qg>=1?1:qg*qg*(3-2*qg)*.35+qg*.65;if(q!==pq){show(q);if(q===0&&pq>0&&!open&&flat===false)swapNext()}
 if(pending&&q>=.97){pending=false;setOpen(true)}
-if(eT>eg)eg=Math.min(1,eg+dt/1250);else if(eT<eg)eg=Math.max(0,eg-dt/700);E=eg*eg*(3-2*eg);
+if(eT>eg)eg=Math.min(1,eg+dt/420);else if(eT<eg)eg=Math.max(0,eg-dt/300);E=eg*eg*(3-2*eg);
 if(!open&&eT===0&&E===0&&flat===false&&qT!==0&&!held&&!pending)qT=0;
 pa+=(paT-pa)*(1-Math.exp(-dt/(paT>pa?150:320)));if(Math.abs(paT-pa)<.003)pa=paT;
 if(pend>=0&&pa>=.72){const i=pend;pend=-1;SEC[i].scrollIntoView();paT=0;flat=false;setOpen(false)}

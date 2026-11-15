@@ -1,0 +1,11 @@
+{
+  "name": "feifei-ism-canvas",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 ../../scripts/build.py board.src.html board.html && node test.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.65.1"
+  }
+}

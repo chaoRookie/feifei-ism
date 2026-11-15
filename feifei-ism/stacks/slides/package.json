@@ -1,0 +1,14 @@
+{
+  "name": "feifei-ism-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1",
+    "dom-to-pptx": "2.1.2",
+    "pptxgenjs": "^4.0.1",
+    "puppeteer-core": "^25.17.0"
+  }
+}

@@ -1,0 +1,3 @@
+.zi{font-family:var(--f-t);font-size:calc(var(--fs-h1) * 2.4);line-height:1;color:var(--ink);margin:0}
+.n{font-family:var(--f-m);color:var(--ink)}
+@media (max-width:640px){.zi{margin-top:2rem}}

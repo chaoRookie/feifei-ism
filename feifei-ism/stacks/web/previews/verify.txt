@@ -1,0 +1,10 @@
+2026-11-14T23:12:15.292Z
+/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+PASS react: no console errors (file://)
+PASS react: button gets .ffdown while pressed
+PASS react: click changes --c and count — #4b1f96 -> #5a4a00, count 1
+PASS react: 390px wide has no horizontal scroll
+PASS astro: no console errors across both pages (file://)
+PASS astro: relative link navigates on disk — file:///.../feifei-ism/stacks/web/astro/dist/notes.html
+PASS astro: motion.js adopted k6 buttons (seal spans) — seal spans 2
+PASS astro: notes.html opened directly has no console errors
